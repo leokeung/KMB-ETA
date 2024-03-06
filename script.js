@@ -6,10 +6,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
     //Clear Container
     const directionContainer = document.querySelector("#directionContainer");
-    directionContainer.innerHTML = "";
     const stopContainer = document.querySelector("#stopContainer");
+    directionContainer.innerHTML = "";
     stopContainer.innerHTML = "";
-
+    Message("Lodaing...");
     fetchRouteData(route);
   });
 });
@@ -50,7 +50,6 @@ async function fetchRouteData(route) {
     directionArray.forEach((btn) => {
       btn.addEventListener("click", (e) => {
         //Clear container
-        const stopContainer = document.querySelector("#stopContainer");
         stopContainer.innerHTML = "";
 
         fetchStopData(route, btn);
