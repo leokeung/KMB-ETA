@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const stopContainer = document.querySelector("#stopContainer");
     directionContainer.innerHTML = "";
     stopContainer.innerHTML = "";
-    Message("Lodaing...");
+
     fetchRouteData(route);
   });
 });
