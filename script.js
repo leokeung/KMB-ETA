@@ -119,6 +119,6 @@ function Message(message) {
 }
 
 function removeMessage() {
-  const message = document.querySelector(".message");
-  message.remove();
+  const message = document.querySelectorAll(".message");
+  message.forEach((el) => el.remove());
 }
