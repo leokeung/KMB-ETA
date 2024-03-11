@@ -2,14 +2,19 @@ document.addEventListener("DOMContentLoaded", function () {
   //Search button
   const button = document.querySelector("#searchBtn");
   button.addEventListener("click", (e) => {
-    const route = document.querySelector("#routeInsert").value.toUpperCase(); //Get bus number
-
     //Clear Container
     const directionContainer = document.querySelector("#directionContainer");
     const stopContainer = document.querySelector("#stopContainer");
     directionContainer.innerHTML = "";
     stopContainer.innerHTML = "";
 
+    //Get bus number
+    const route = document
+      .querySelector("#routeInsert")
+      .value.toUpperCase()
+      .trim();
+
+    Message("Loading...");
     fetchRouteData(route);
   });
 });
@@ -45,6 +50,8 @@ async function fetchRouteData(route) {
       }
     }
 
+    removeMessage();
+
     //Direction button
     const directionArray = document.querySelectorAll(".direction");
     directionArray.forEach((btn) => {
@@ -52,6 +59,7 @@ async function fetchRouteData(route) {
         //Clear container
         stopContainer.innerHTML = "";
 
+        Message("Loading...");
         fetchStopData(route, btn);
       });
     });
@@ -96,6 +104,8 @@ async function fetchStopData(route, btn) {
       count++;
       stopContainer.appendChild(stop);
     }
+
+    removeMessage();
   } catch (err) {
     Message("路線資料暫時無法讀取");
   }
@@ -106,4 +116,9 @@ function Message(message) {
   direction.className = "message";
   direction.textContent = message;
   directionContainer.appendChild(direction);
+}
+
+function removeMessage() {
+  const message = document.querySelector(".message");
+  message.remove();
 }
